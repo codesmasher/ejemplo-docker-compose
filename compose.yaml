@@ -1,0 +1,34 @@
+name: esotelo-app
+
+services:
+  db:
+    build:
+      context: ./containers/postgresql
+    container_name: postgresql-2026
+    volumes:
+      - ./volumes/tmp:/tmp:Z
+      - ./volumes/db_backups:/backups:Z
+      - ./volumes/queries:/queries:Z
+    ports:
+      - 5432:5432
+    tty: true
+    stdin_open: true
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD_FILE=/run/secrets/postgresql-password
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    secrets:
+      - postgresql-password
+    networks:
+      backend:
+        ipv4_address: 172.18.0.2
+
+networks:
+  backend:
+    ipam:
+      config:
+        - subnet: 172.18.0.0/24
+
+secrets:
+  postgresql-password:
+    file: ./containers/secrets/postgresql-password

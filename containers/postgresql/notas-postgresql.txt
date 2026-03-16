@@ -1,0 +1,2 @@
+# Directorio del los archivos pg_hba.conf y postgresql.conf
+/var/lib/postgresql/data/pgdata
