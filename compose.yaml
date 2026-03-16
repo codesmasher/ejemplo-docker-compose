@@ -23,6 +23,25 @@ services:
       backend:
         ipv4_address: 172.18.0.2
 
+  db-admin:
+    build:
+      context: ./containers/pgadmin
+    container_name: pgadmin-2026
+    volumes:
+      - ./volumes/queries:/var/lib/pgadmin/storage:Z
+    ports:
+      - 9088:80
+    depends_on:
+      - db
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=sotelo.enrique@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD_FILE=/run/secrets/pgadmin-password
+    secrets:
+      - pgadmin-password
+    networks:
+      backend:
+        ipv4_address: 172.18.0.3
+
 networks:
   backend:
     ipam:
@@ -32,3 +51,5 @@ networks:
 secrets:
   postgresql-password:
     file: ./containers/secrets/postgresql-password
+  pgadmin-password:
+    file: ./containers/secrets/pgadmin-password
