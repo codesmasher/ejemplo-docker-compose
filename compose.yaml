@@ -42,6 +42,23 @@ services:
       backend:
         ipv4_address: 172.18.0.3
 
+  web-php:
+    build:
+      context: ./containers/apache-php
+    container_name: apache-2026
+    volumes:
+      - ./volumes/tmp:/tmp:Z
+      - ./volumes/apache_docs:/var/www/html:Z
+    ports:
+      - 80:80
+    tty: true
+    stdin_open: true
+    depends_on:
+      - db
+    networks:
+      backend:
+        ipv4_address: 172.18.0.4
+
 networks:
   backend:
     ipam:

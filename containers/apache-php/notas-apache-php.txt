@@ -1,0 +1,15 @@
+# Se instalan las siguientes dependencias en el archivo Dockerfile
+
+1. GD
+2. PostgreSQL
+3. Zip
+4. XDebug
+
+# Directorio del archivo php.ini
+/usr/local/etc/php
+
+# Reiniciar el servicio de apache en el container
+docker exec <nombre_contenedor> apache2ctl -k graceful
+
+# Segunda opción para reiniciar el servicio en el container
+docker exec <nombre_contenedor> service apache2 reload
