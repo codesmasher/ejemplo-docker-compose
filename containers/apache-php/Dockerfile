@@ -19,6 +19,7 @@ RUN docker-php-source extract \
     && docker-php-ext-install intl \
     && docker-php-ext-install pdo pdo_pgsql pgsql \
     && docker-php-ext-install zip \
+    && docker-php-ext-install pcntl \
     && docker-php-source delete
 # Install xDebug from pecl
 RUN pecl install xdebug \
