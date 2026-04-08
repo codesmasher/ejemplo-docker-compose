@@ -4,7 +4,7 @@ services:
   db:
     build:
       context: ./containers/postgresql
-    container_name: postgresql-2026
+    container_name: postgresql
     volumes:
       - ./volumes/tmp:/tmp:Z
       - ./volumes/db_backups:/backups:Z
@@ -26,7 +26,7 @@ services:
   db-admin:
     build:
       context: ./containers/pgadmin
-    container_name: pgadmin-2026
+    container_name: pgadmin
     volumes:
       - ./volumes/queries:/var/lib/pgadmin/storage:Z
     ports:
@@ -45,7 +45,7 @@ services:
   web-php:
     build:
       context: ./containers/apache-php
-    container_name: apache-2026
+    container_name: apache-php
     volumes:
       - ./volumes/tmp:/tmp:Z
       - ./volumes/apache_docs:/var/www/html:Z
@@ -67,6 +67,6 @@ networks:
 
 secrets:
   postgresql-password:
-    file: ./containers/secrets/postgresql-password
+    file: ./containers/secrets/postgresql-password.txt
   pgadmin-password:
-    file: ./containers/secrets/pgadmin-password
+    file: ./containers/secrets/pgadmin-password.txt

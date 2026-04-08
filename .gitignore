@@ -6,3 +6,9 @@ volumes/**/*
 
 # Excepción: NO ignorar los archivos .gitkeep
 !volumes/**/.gitkeep
+
+# Ignorar archivos de contraseñas
+containers/secrets/**/*
+
+# Excepción: NO ignorar los archivos .gitkeep
+!containers/secrets/.gitkeep
