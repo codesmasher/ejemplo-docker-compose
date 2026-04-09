@@ -1,1 +1,14 @@
-volumes/*
+# Ignorar todo el contenido dentro de la carpeta volumes
+volumes/**/*
+
+# Pero no ignorar las carpetas en sí mismas
+!volumes/**/
+
+# Excepción: NO ignorar los archivos .gitkeep
+!volumes/**/.gitkeep
+
+# Ignorar archivos de contraseñas
+containers/secrets/**/*
+
+# Excepción: NO ignorar los archivos .gitkeep
+!containers/secrets/.gitkeep
