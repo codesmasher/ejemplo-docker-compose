@@ -58,6 +58,22 @@ services:
     networks:
       backend:
         ipv4_address: 172.18.0.4
+  
+  web-python:
+    build:
+      context: ./containers/fastapi-python
+    container_name: fastapi-python
+    volumes:
+      - ./volumes/tmp:/tmp:Z
+      - ./volumes/fastapi-docs:/app
+    restart: always
+    ports:
+      - 8000:8000
+    tty: true
+    stdin_open: true
+    networks:
+      backend:
+        ipv4_address: 172.18.0.5
 
 networks:
   backend:
